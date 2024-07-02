@@ -27,40 +27,47 @@ const Signup = ({ navigation }) => {
       Alert.alert('Validation Error', 'Password must be at least 6 characters long.');
       return;
     }
-
-    storeUserData(email,[email,name,password])
+    let details = {
+        name : name,
+        email : email,
+        password : password
+    }
+    storeUserData(email,details)
     navigation.navigate('Login');
   };
 
   return (
     <View style={styles.container}>
-      <Text>Signup</Text>
+      <Text style={styles.text}>Signup</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input,styles.text]}
         placeholder="Name"
         value={name}
         onChangeText={setName}
+        placeholderTextColor={"black"}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input,styles.text]}
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
+        placeholderTextColor={"black"}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input,styles.text]}
         placeholder="Password"
         secureTextEntry
         value={password}
+        placeholderTextColor={"black"}
         onChangeText={setPassword}
       />
       <Button title="Signup" onPress={handleSignup} />
-      <View style={{ paddingTop: 20 }}>
+      {/* <View style={{ paddingTop: 20 }}>
         <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-          <Text>Login</Text>
+          <Text style={styles.text}>Login</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 };
@@ -76,6 +83,9 @@ const styles = StyleSheet.create({
     padding: 8,
     marginVertical: 8,
   },
+  text : {
+    color : "black"
+  }
 });
 
 export default Signup;
